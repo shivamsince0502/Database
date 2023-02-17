@@ -1,19 +1,7 @@
 create database lms;
 use lms;
 
-create table admin_users(
-	user_id bigint primary key,
-    username varchar(15),
-    user_password char(60),
-    employeee_id bigint unique key
-);
 
-insert into admin_users(user_id, username, user_password, employeee_id)
-	value(1, "alpha", "aiufh9283", 1),
-		  (2, "beta", "aweiuhw343", 3),
-          (3, "gama", "kjh24393", 4),
-          (4, "delta", "mvbnvm34523", 6),
-          (5, "hiphen", "pmklnqdx234", 7);
 
 create table departments(
 	dept_id bigint primary key,
@@ -67,6 +55,22 @@ insert into employee(emp_id, first_name, last_name, age, gender, email, mob_no, 
               (8, "rani", "kumar", 21, true, "alskdfja)@gmail.com", 7682943594, 4, 4, true),
               (9, "shreya", "kumar", 21, true, "alskdfja)@gmail.com", 7682943594, 5, 3, true);
 
+create table admin_users(
+	user_id bigint primary key,
+    username varchar(15),
+    user_password char(60),
+    employee_id bigint unique key,
+    foreign key (employee_id) references employee(emp_id)
+);
+
+
+
+insert into admin_users(user_id, username, user_password, employee_id)
+	value(1, "alpha", "aiufh9283", 1),
+		  (2, "beta", "aweiuhw343", 3),
+          (3, "gama", "kjh24393", 4),
+          (4, "delta", "mvbnvm34523", 6),
+          (5, "hiphen", "pmklnqdx234", 7);
 
 create table leave_type(
 	leave_id int primary key,
